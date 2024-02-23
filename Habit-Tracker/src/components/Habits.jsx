@@ -1,8 +1,18 @@
 import React from "react";
+import { useState } from "react";
 
 function Habits() {
-  const Habits = ["gym", "meditate", "dance"];
+  const initialHabits = ["gym", "meditate", "dance"];
+  const [Habits, setHabits] = useState(initialHabits);
+  const [newHabit, setNewHabit] = useState("");
   const myList = Habits.map((item) => <p>{item}</p>);
+
+  const createHabit = () => {
+    if (newHabit !== "") {
+      setHabits([...Habits, newHabit]);
+      setNewHabit("");
+    }
+  };
 
   console.log(Habits);
 
@@ -16,10 +26,17 @@ function Habits() {
           class="btn btn-outline-secondary"
           type="button"
           id="button-addon1"
+          onClick={createHabit}
         >
           Add Habit
         </button>
-        <input type="text" class="form-control" placeholder="habit..." />
+        <input
+          type="text"
+          class="form-control"
+          placeholder="habit..."
+          value={newHabit}
+          onChange={(e) => setNewHabit(e.target.value)}
+        />
       </div>
     </>
   );

@@ -14,6 +14,13 @@ function Habits() {
     }
   };
 
+  const removeHabit = () => {
+    if (Habits.length > 0) {
+      const updateHabits = Habits.slice(0, -1);
+      setHabits(updateHabits);
+    }
+  };
+
   console.log(Habits);
 
   return (
@@ -38,6 +45,9 @@ function Habits() {
           onChange={(e) => setNewHabit(e.target.value)}
         />
       </div>
+      <button type="button" class="btn btn-dark" onClick={removeHabit}>
+        Remove
+      </button>
     </>
   );
 }

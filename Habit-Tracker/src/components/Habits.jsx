@@ -1,12 +1,20 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { Checkbox } from "semantic-ui-react";
 
 function Habits() {
   const storedHabits = JSON.parse(localStorage.getItem("Habits"));
   const initialHabits = storedHabits || [""];
   const [Habits, setHabits] = useState(initialHabits);
   const [newHabit, setNewHabit] = useState("");
-  const myList = Habits.map((item, index) => <p key={index}>{item}</p>);
+  const myList = Habits.map((item, index) => (
+    <div style={{ display: "flex" }}>
+      <Checkbox />{" "}
+      <p style={{ paddingLeft: "10px" }} key={index}>
+        {item}
+      </p>{" "}
+    </div>
+  ));
 
   const createHabit = () => {
     if (newHabit.trim() !== "") {
